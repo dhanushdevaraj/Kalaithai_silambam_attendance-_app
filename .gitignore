@@ -3,3 +3,5 @@ __pycache__/
 venv/
 .venv/
 kalaithai.db
+silambam_attendance.db
+*.db

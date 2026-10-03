@@ -1,16 +1,16 @@
 # Kalaithai Silambam - Kurumpatti Attendance System
 
 ## Features
-- Admin login
-- Student list
-- Mark Present/Absent
-- Mark all present
-- Attendance history
-- Individual attendance reports
-- Monthly summary
-- Dark/light mode
-- SQLite database
-- Mobile-friendly layout
+- **Morning Batch Schedule**: Fixed batch timing **6:30 AM to 8:30 AM (Morning Only)**
+- **Attendance Time Window Lock**: Trainers can only mark attendance during the 6:30 AM – 8:30 AM window
+- **Admin Override Mode**: Master Admin can mark and modify attendance anytime (24/7 override)
+- Role-based Access (Admin & Trainer)
+- Student directory with batch assignment
+- Mark Present/Absent & Mark All Present/Absent
+- Attendance history & filtered dates
+- Individual attendance reports with percentage tracking
+- SQLite database with automatic migrations
+- Glassmorphic dark UI with batch status badges
 
 ## Default login
 Username: admin
