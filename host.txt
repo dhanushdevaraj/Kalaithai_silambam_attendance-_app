@@ -1,0 +1,126 @@
+================================================================================
+🥋 KALAITHAI SILAMBAM, KURUMPATTI — 100% FREE HOSTING GUIDE
+================================================================================
+File: host.txt
+Project: Kalaithai Silambam Attendance Management System
+Technology: Streamlit (Python Frontend + Backend + SQLite Database)
+
+--------------------------------------------------------------------------------
+📌 IMPORTANT ARCHITECTURE NOTE:
+--------------------------------------------------------------------------------
+Because your application is built with Streamlit, the FRONTEND (Web Interface)
+and the BACKEND (Python Logic + SQLite Database) are packaged TOGETHER.
+You DO NOT need separate servers for frontend and backend! 
+Both will be hosted together on a single FREE cloud platform.
+
+================================================================================
+🚀 METHOD 1: STREAMLIT COMMUNITY CLOUD (RECOMMENDED — 100% FREE FOREVER)
+================================================================================
+Streamlit Community Cloud is created directly by the Streamlit team specifically
+to host apps like yours for free with zero configuration, free SSL (HTTPS), and
+automatic updates whenever you push code to GitHub.
+
+--- STEP 1: Push Your Project to GitHub ---
+1. Open your terminal in this project folder:
+   d:\Project\Silambam_attendance_app
+
+2. If you haven't logged in to Git or created a GitHub repository yet:
+   a. Go to https://github.com and sign in (create an account if you don't have one).
+   b. Click "New repository" (+ button in top right).
+   c. Repository Name: kalaithai-silambam
+   d. Visibility: Choose "Public" or "Private" (both are 100% supported on free tier).
+   e. Do NOT check "Initialize with README" (since we already have one).
+   f. Click "Create repository".
+
+3. Connect your local folder to GitHub and push your code:
+   (Run these commands in your PowerShell or Command Prompt inside the folder):
+
+   git add .
+   git commit -m "Deploy Kalaithai Silambam Attendance App"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/kalaithai-silambam.git
+   git push -u origin main
+
+   *(Replace YOUR_GITHUB_USERNAME with your actual GitHub username)*
+
+--- STEP 2: Deploy on Streamlit Cloud ---
+1. Go to https://share.streamlit.io in your browser.
+2. Click "Continue with GitHub" and log in with your GitHub account.
+3. Click the blue button: "Create app" or "New app".
+4. Fill in the 3 simple settings:
+   - Repository: Select YOUR_GITHUB_USERNAME/kalaithai-silambam
+   - Branch: main (or updated)
+   - Main file path: app.py
+   - App URL (Optional): Choose your custom free link, e.g.:
+     kalaithai-silambam.streamlit.app
+5. Click "Deploy!"
+
+--- STEP 3: Your Site is LIVE! ---
+Within 1-2 minutes, your website will be live worldwide at:
+https://kalaithai-silambam.streamlit.app
+
+You and your trainers can open this URL directly from mobile phones, tablets,
+or PCs anytime without keeping your computer on!
+
+================================================================================
+🚀 METHOD 2: HUGGING FACE SPACES (ALTERNATIVE 100% FREE HOSTING)
+================================================================================
+If you prefer an alternative free host with dedicated resources:
+
+1. Create a free account at https://huggingface.co
+2. Go to Spaces: https://huggingface.co/spaces
+3. Click "Create new Space":
+   - Space Name: kalaithai-silambam
+   - Space SDK: Choose "Streamlit"
+   - Hardware: Free (2 vCPU, 16 GB RAM)
+   - Visibility: Public or Private
+4. Clone the space repo or upload your files:
+   - app.py
+   - database.py
+   - auth.py
+   - translations.py
+   - requirements.txt
+   - assets/ (all images)
+5. Hugging Face will automatically build and launch your live site!
+
+================================================================================
+🚀 METHOD 3: RENDER.COM (FREE WEB SERVICE)
+================================================================================
+1. Go to https://render.com and sign up for free.
+2. Click "New +" -> "Web Service".
+3. Connect your GitHub repository.
+4. Settings:
+   - Environment: Python 3
+   - Build Command: pip install -r requirements.txt
+   - Start Command: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+   - Plan: Free
+5. Click "Create Web Service".
+
+================================================================================
+💾 CRITICAL ADVICE: SQLITE CLOUD DATA PERSISTENCE
+================================================================================
+Because free cloud hosting platforms occasionally restart or update containers:
+1. Any changes saved to SQLite will stay during normal operation.
+2. However, to guarantee you NEVER lose student attendance data:
+   - Use Feature #2 in your app: Regularly download the Monthly Register (.xlsx)!
+   - (Coming soon in Feature #5: 1-Click "Download Database Backup" button).
+3. If you later want a cloud database that never resets, you can connect your app
+   to a free cloud PostgreSQL database like Supabase (https://supabase.com) or
+   Neon (https://neon.tech) — both offer 100% free cloud databases.
+
+================================================================================
+🔐 DEFAULT LOGIN CREDENTIALS FOR YOUR DEPLOYED SITE:
+================================================================================
+Administrator Account:
+- Username: admin
+- Password: admin123
+- Access: Full Control (Students, Attendance, Reports, Trainer Accounts)
+
+Trainer Account:
+- Username: trainer
+- Password: trainer123
+- Access: Mark Attendance, View Students, Reports, WhatsApp Alerts
+
+*(You can create additional trainer accounts or change passwords inside the
+"Manage Trainers" tab once logged in as Admin).*
+================================================================================
