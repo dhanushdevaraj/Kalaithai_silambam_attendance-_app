@@ -2,7 +2,9 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-DB_FILE = "silambam_attendance.db"
+from pathlib import Path
+
+DB_FILE = str((Path(__file__).parent / "silambam_attendance.db").resolve())
 
 def get_connection():
     """Returns a SQLite connection with dict-like row accessibility."""
@@ -82,15 +84,22 @@ def init_db():
     conn.close()
 
 def seed_default_users(cursor):
-    """Seed initial Admin and Trainer accounts if not existing."""
+    """Seed initial Admin and Trainer accounts if not existing or ensure default passwords."""
     default_users = [
         ('admin', 'admin123', 'Master Admin', 'admin'),
         ('trainer', 'trainer123', 'Head Trainer', 'trainer')
     ]
     for username, password, full_name, role in default_users:
-        cursor.execute("SELECT COUNT(*) FROM users WHERE username = ?", (username,))
-        if cursor.fetchone()[0] == 0:
-            pw_hash = hash_password(password)
+        pw_hash = hash_password(password)
+        cursor.execute("SELECT id FROM users WHERE LOWER(TRIM(username)) = ?", (username.lower(),))
+        row = cursor.fetchone()
+        if row:
+            uid = row[0] if isinstance(row, tuple) else row['id']
+            cursor.execute(
+                "UPDATE users SET password_hash = ?, full_name = ?, role = ? WHERE id = ?",
+                (pw_hash, full_name, role, uid)
+            )
+        else:
             cursor.execute(
                 "INSERT INTO users (username, password_hash, full_name, role) VALUES (?, ?, ?, ?)",
                 (username, pw_hash, full_name, role)

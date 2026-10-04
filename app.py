@@ -71,19 +71,53 @@ def apply_custom_styles():
         {bg_css}
         
         /* Dark Translucent Overlay for Readable Content */
+        .stApp {{
+            color: #FFFFFF;
+        }}
+
         .block-container {{
-            background: rgba(14, 17, 23, 0.88);
+            background: rgba(14, 17, 23, 0.92);
             padding: 2.2rem;
             border-radius: 18px;
             margin-top: 1.5rem;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }}
 
         /* Heading & Typography Styling */
-        h1, h2, h3 {{
+        h1, h2, h3, h4 {{
             color: #FFD700 !important;
             font-weight: 700 !important;
+        }}
+
+        /* All form labels, captions, and text for crystal clear visibility */
+        label, .stTextInput label, .stSelectbox label, .stRadio label, .stDateInput label {{
+            color: #F3F4F6 !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+        }}
+
+        div[data-testid="stMarkdownContainer"] p, .stCaption, small, p {{
+            color: #D1D5DB !important;
+        }}
+
+        div[data-testid="stRadio"] label span {{
+            color: #FFFFFF !important;
+            font-weight: 600 !important;
+        }}
+
+        /* Inputs text styling */
+        input[type="text"], input[type="password"] {{
+            background-color: #1A1F2C !important;
+            color: #FFFFFF !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            font-size: 16px !important;
+        }}
+        input[type="text"]:focus, input[type="password"]:focus {{
+            border-color: #FFD700 !important;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3) !important;
         }}
 
         .role-badge-admin {{
@@ -299,17 +333,27 @@ def render_login():
 
         st.write("---")
 
-        username = st.text_input("Username / பயனர் பெயர்", key="login_user")
-        password = st.text_input("Password / கடவுச்சொல்", type="password", key="login_pw")
+        with st.form("login_form", clear_on_submit=False):
+            username = st.text_input("Username / பயனர் பெயர்", key="login_user", placeholder="admin")
+            password = st.text_input("Password / கடவுச்சொல்", type="password", key="login_pw", placeholder="••••••••")
+            submitted = st.form_submit_button("🔐 LOGIN / உள்நுழை", use_container_width=True, type="primary")
 
-        if st.button("🔐 LOGIN / உள்நுழை", use_container_width=True, type="primary"):
-            user = authenticate_user(username, password)
-            if user:
-                st.session_state.user = user
-                st.success(f"Welcome back, {user['full_name']}!")
-                st.rerun()
-            else:
-                st.error("❌ Invalid Username or Password / தவறான பயனர் பெயர் அல்லது கடவுச்சொல்")
+            if submitted:
+                user = authenticate_user(username, password)
+                if user:
+                    st.session_state.user = user
+                    st.success(f"Welcome back, {user['full_name']}!")
+                    st.rerun()
+                else:
+                    st.error("❌ Invalid Username or Password / தவறான பயனர் பெயர் அல்லது கடவுச்சொல்")
+
+        st.markdown("""
+        <div style="margin-top: 14px; padding: 10px 14px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; border: 1px dashed rgba(255, 215, 0, 0.35); font-size: 13px; color: #E0E0E0;">
+            🔑 <strong>Default Login / இயல்புநிலை உள்நுழைவு:</strong><br>
+            • <strong>Admin:</strong> <code>admin</code> / <code>admin123</code><br>
+            • <strong>Trainer:</strong> <code>trainer</code> / <code>trainer123</code>
+        </div>
+        """, unsafe_allow_html=True)
 
 # --- DASHBOARD VIEW ---
 
